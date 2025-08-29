@@ -1,6 +1,7 @@
 //
 // Created by tuuli on 29/08/2025.
 /*
+ TEHTÄVÄNANTO:
 Write a program that asks user to enter a line that contains integers or “stop” to stop the program. If
 user enters a string that starts with “stop” the program stops. Otherwise, the program creates a
 string stream from the user input and reads integers from the stream. Program keeps reading and
@@ -39,16 +40,18 @@ int main() {
     bool stoppi = false;
     std::string stop = "stop";
 
+    //0. while loop, jonka sisällä ehtorakenteilla pyörii ohjelma, joka kysyy stop käskyyn asti numeroita listaan
     while (stoppi == false) {
-        //Alustetaan numbers vektori ja line loopin alussa, jotta tyhjät uutta kierrosta varten. Vois myös opetella tyhjentään myöhemmin.
+
+    //1. Alustetaan numbers vektori ja line loopin alussa, jotta tyhjät uutta kierrosta varten. Vois myös opetella tyhjentään myöhemmin.
         std::vector<int> numbers;
         std::string line;
 
-        //Kysytään käyttäjältä rivi, ja laitetaan se getlinella cin outputtia käyttämällä line stringiin talteen
+    //2. Kysytään käyttäjältä rivi, ja laitetaan se getlinella cin outputtia käyttämällä line stringiin talteen
         std::cout << "Enter a line with numbers or \"stop\":" ;
         getline(std::cin, line);
 
-        //tähän väliin checkki stopille, ennen kun aletaan katsoa numeroita
+    //3. tähän väliin checkki stopille, ennen kun aletaan katsoa numeroita
                 //s.find(sub);
                 //  s= alkuperäinen stringi josta etsitään
                 //  sub= substringi jota etsitään s:stä
@@ -57,20 +60,21 @@ int main() {
             std:: cout << "You stopped the program." << std::endl;
             stoppi = true;
         }
+    //4. jos stoppia ei löydy, etsitään numerot ja lasketaan ne yhteen jne
         else {
-            //Aletaan pilkkoa line stringissä olevaa infoa numeroihin.
-            //istringstream olio, nimetty ssolio:ksi, johon alustettu line stringissä tallessa oleva kama
+        //4.1 Aletaan pilkkoa line stringissä olevaa infoa numeroihin.
+                //istringstream olio, nimetty ssolio:ksi, johon alustettu line stringissä tallessa oleva kama
             std::istringstream ssolio(line);
 
-            //ssolio:sta otetaan num int muuttujaan välilyöntien välissä olevat numerot.
-            //while loop pyörii niin kauan kuin numeroita onnistutaan saamaan, eli kunnes ssolio on tyhjä, tai törmätään ei-lukuun
-            //Eli ehto täyttää overloadiin liittyvällä funktion metsästyksellä tuloksen true, kun onnistuu, false, kun ei.
-            //siirretään num muuttujassa tallessa sillä kierroksella oleva luku push_back() metodilla numbers vektoriin.
+                //ssolio:sta otetaan num int muuttujaan välilyöntien välissä olevat numerot.
+                //while loop pyörii niin kauan kuin numeroita onnistutaan saamaan, eli kunnes ssolio on tyhjä, tai törmätään ei-lukuun
+                //Eli ehto täyttää overloadiin liittyvällä funktion metsästyksellä tuloksen true, kun onnistuu, false, kun ei.
+                //siirretään num muuttujassa tallessa sillä kierroksella oleva luku push_back() metodilla numbers vektoriin.
             while (ssolio >> num) {
                 numbers.push_back(num);
             }
 
-            //Laskuri vectorin numbers numeroista, ja kuinka monta alkiota, + printtaa tuloksen
+        //4.2 Laskuri vectorin numbers numeroista, ja kuinka monta alkiota, + printtaa tuloksen
             auto howmany = numbers.size();
             int result = 0;
             for (auto n:numbers) {
