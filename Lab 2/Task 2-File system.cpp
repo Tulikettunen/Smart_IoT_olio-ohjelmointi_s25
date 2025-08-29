@@ -22,3 +22,58 @@ parameter.
 */
 //
 
+//INCLUDE
+#include <iostream>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <bits/stdc++.h>
+
+//INITIALIZE
+std::vector<std::string> input();
+
+
+//FUNCTIONS
+std::vector<std::string> input(){
+    std::string line;
+    getline(std::cin, line);
+
+}
+
+
+//Ohjelman oletus on että sinne ei pistetä nimiin välilyöntejä, kiitos!!
+
+//MAIN
+int main() {
+    //Alustetaan tarvittavia asioita
+    std::string line;
+    std::vector<std::string> names;
+    std::istringstream ssolio;
+    bool stop = false;
+
+    //While loop jolla otetaan käyttäjältä kansion nimiä ja siirretäänn ne string line muuttujaan,
+    //jonka kautta ne siirretään names vektoriin talteen. Loop loppuu kun käyttäjä painaa tyhjän rivin enterillä.
+    while (stop == false) {
+        std::cout << "Enter a directory name and press enter, or press enter to empty line to stop: " << "\n";
+        getline(std::cin, line);
+
+        if (line.empty()) {
+            stop = true;
+        }
+        else {
+            names.push_back(line);
+        }
+
+    }
+
+    //Testataan että kansioiden nimet menee string vectoriin oikein tulostamalla ne
+    for (auto n: names) {
+        std::cout << n << std::endl;
+    }
+
+
+
+    return 0;
+}
