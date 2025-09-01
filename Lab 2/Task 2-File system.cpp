@@ -30,15 +30,61 @@ parameter.
 #include <vector>
 #include <string>
 #include <bits/stdc++.h>
+#include <filesystem>
 
 //INITIALIZE
-std::vector<std::string> input();
+std::filesystem::path CreateDirectory(std::vector<std::string> dirNames);
+std::filesystem::path CreateFilePath(std::filesystem::path dirPath, std::string& fileName);
+void WriteToFile(std::filesystem::path filePath, std::vector<std::string> dirNames, std::string fileName);
 
 
 //FUNCTIONS
-std::vector<std::string> input(){
-    std::string line;
-    getline(std::cin, line);
+std::filesystem::path CreateDirectory(std::vector<std::string> dirNames) {  //Luodaan kansiot ja kansiopolut, palauttaa kansiopolun.
+    std::filesystem::path dirPath;
+
+    for (auto n:dirNames) {     //Otetaan vektorista nimet, ja modostetaan niistä for-range loopilla kansiopolku
+        dirPath = dirPath / n;
+    }
+
+    if (!exists(dirPath)) {
+        create_directories(dirPath);        //luodaan kansiot
+        std::cout << "Directory created: " << dirPath.string() << std::endl;    //Printataan käyttäjälle viesti onnistumisesta
+    }
+
+    return dirPath;
+}
+
+std::filesystem::path CreateFilePath(std::filesystem::path dirPath, std::string& fileName) {    //luodaan filelle nimi ja tiedostopolku
+    fileName = fileName + ".txt";   //Lisätään nimen päätteeksi .txt
+    std::filesystem::path filepath = dirPath / fileName;        //filepath variableen alustetaan/luodaan kansiopolulla ja txt tiedoston nimellä tiedostopolku
+
+    return filepath;
+}
+
+void WriteToFile(std::filesystem::path filePath, std::vector<std::string> dirNames, std::string fileName){
+    std::ofstream file(filePath);
+
+    //Tarkistetaan onko file auki
+    if (file.is_open()) {
+        std::cout << "File created: " << filePath.string() << std::endl;
+        std::cout << "File's contents: " << std::endl;
+
+        //Printataan halutut tiedot fileen ja näytölle:
+        file << "Absolute path to a file" << fileName << ": " << absolute(filePath).string() << std::endl;    //printataan fileen absoluuttinen polku käyttäen absolute() funktiota
+        std::cout << "Absolute path to a file " << fileName << ": " << absolute(filePath).string() << std::endl;   //printataan näytölle absoluuttinen polku
+        for (auto n: dirNames) {    //listataan allekkain kansioiden nimet omille riveilleen, fileen ja näytölle
+            file << n << std::endl;
+            std::cout << n << std::endl;
+        }
+        file << "Relative filepath to the file is: " << filePath.string() << std::endl;   //printataan fileen suhteellinen polku
+        std::cout << "Relative filepath to the file is: " << filePath.string() << std::endl;  //printataan näyttöön suhteellinen polku
+        file.close();   //suljetaan tiedosto
+    }
+    else {
+        // virheen käsittely
+        std::cerr << "Failed to create file: " << filePath
+             << std::endl;
+    }
 
 }
 
@@ -46,10 +92,10 @@ std::vector<std::string> input(){
 //Ohjelman oletus on että sinne ei pistetä nimiin välilyöntejä, kiitos!!
 
 //MAIN
-int main() {
+int main(){
     //Alustetaan tarvittavia asioita
     std::string line;
-    std::vector<std::string> names;
+    std::vector<std::string> dirNames;
     std::istringstream ssolio;
     bool stop = false;
 
@@ -63,17 +109,15 @@ int main() {
             stop = true;
         }
         else {
-            names.push_back(line);
+            dirNames.push_back(line);
         }
 
     }
 
-    //Testataan että kansioiden nimet menee string vectoriin oikein tulostamalla ne
-    for (auto n: names) {
-        std::cout << n << std::endl;
-    }
-
-
+    std::string fileName = "return"; // Alustettu rakennusvaiheessa niin, että tätä voisi kehittää niin että käyttäjä pystyisi syöttämään oman haluamansa tiedostonimen.
+    std::filesystem::path newDirPath = CreateDirectory(dirNames);
+    std::filesystem::path newFilePath = CreateFilePath(newDirPath,fileName);
+    WriteToFile(newFilePath, dirNames, fileName);
 
     return 0;
 }
