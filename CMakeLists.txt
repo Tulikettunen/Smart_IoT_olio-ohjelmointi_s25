@@ -10,4 +10,5 @@ add_executable(untitled
         "Lab 2/Task 2-File system.cpp"
         "Lab 1/Task 2-using reference parameter.cpp"
         "Lab 3/Task 1-Using std map and std pair.cpp"
+        "Lab 3/Task 2- Composition.cpp"
 )
