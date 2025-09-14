@@ -90,10 +90,10 @@ std::istream &operator>>(std::istream &in, Items &i) {
                     auto count_i = line.find(count, price_i);
                         //Tässä kohtaa on tarkistettu että Json formaatti on. sitä onko paino hinta ja määrä pelkkiä lukuja ei vielä.
                     //tarkistuksen voi tehdä mm stoi?? funktiolla, string to int funktiolla tms. ja string stream oliolla
-                    std::string name_str = line.substr(name_i + name.size(), weight_i - name_i);
-                    std::istringstream ssolio1(line.substr(weight_i + weight.size(), price_i- weight_i));
-                    std::istringstream ssolio2(line.substr(price_i + price.size(), count_i - price_i));
-                    std::istringstream ssolio3(line.substr(count_i + count.size(), line.size() - count_i));
+                    std::string name_str = line.substr(name_i + name.size(), weight_i - (name_i + name.size()));
+                    std::istringstream ssolio1(line.substr(weight_i + weight.size(), price_i - (weight_i + weight.size())));
+                    std::istringstream ssolio2(line.substr(price_i + price.size(), count_i - (price_i + price.size())));
+                    std::istringstream ssolio3(line.substr(count_i + count.size(), line.size() - (count_i + count.size())));
                     int weight_num;
                     double price_num;
                     int count_num;
