@@ -129,7 +129,12 @@ int main() {
     //main koodia. Syöte funktio:
     while (keepGoing == true) {
         std::cout << "enter item information, starting with the name or \"stop\" to end entering items or “json” to enter item information in JSON format" << std::endl;
-        if () {
+        std::string line;
+        std::getline(std::cin, line);
+        if (line == "stop") {
+            keepGoing = false;
+        }
+        else if (line == "json") {
 
         }
 
