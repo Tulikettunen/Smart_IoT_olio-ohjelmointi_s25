@@ -73,7 +73,7 @@ std::ostream &operator<<(std::ostream &out, const Item &i) {
 
 std::istream &operator>>(std::istream &in, Item &i) {
     //tämä funktio ottaa vain json muotoista vastaa, loput syötteeet otetaan mainissa. Jos ei ole json muotoista, palauttaa failbitin
-    std::string name = " {\"Name\":\"",
+    std::string name = "{ \"Name\":\"",
     weight = "\", \"Weight\":",
     price = ", \"Price\":",
     count = ", \"Count\":";
@@ -131,7 +131,10 @@ int main() {
         Item newItem;
         std::cout << R"(Enter item information, starting with the name or "stop" to end entering items or "json" to enter item information in JSON format)" << std::endl;
         std::string line;
+        std::cout << "Is string good" << std::cin.good() << std::endl;
+        std::cin >> std::ws;
         std::getline(std::cin, line);
+        std::cout << line << std::endl;
         if (line == "stop") {
             keepGoing = false;
         }
@@ -139,13 +142,22 @@ int main() {
             //testidataa:
             //   { "Name":"Chicken vindalo", "Weight":460, "Price":7.90, "Count": 2 }
             //   { "Name":"Ketsuppi", "Weight":200, "Price":3.20, "Count": 3 }
+            //   { "Name":"Chicken buffa", "Weight":760, "Price":11.80, "Count": 7 }
             std::cout << "Enter the JSON" << std::endl;
             std::cin >> newItem;
-            iv.emplace_back(newItem);
+            if (std::cin.fail()) {
+                std::cout << "Something went wrong." << std::endl;
+                std::cin.clear();
+            }
+            else {
+                iv.emplace_back(newItem);
+                std::cout << "Else if lause cin suoritettu" << std::endl;
+            }
         }
         else {
             //Tähän laitetaan suoraan nimellä alotettav syöte uuden olion parametrien antamiseksi
             std::string name_str;
+            std::cout << "Vika else lause" << std::endl;
             int weight_num;
             double price_num;
             int count_num;
