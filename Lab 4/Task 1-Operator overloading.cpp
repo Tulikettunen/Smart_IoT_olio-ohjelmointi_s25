@@ -188,6 +188,7 @@ int main() {
     }
 
     //stopin jälkeen päädytään tänne, ja printataan vektori indekseineen, ja lopuksi "varaston" nettoarvo
+    std::sort(iv.begin(), iv.end());
     printVector(iv);
 
     //seuraavaksi kysytään käyttäjältä mitä haluaa muuttaa, ja tehdään hintaan muutos.
@@ -201,6 +202,8 @@ int main() {
 
     printVector(iv);
 
+    sort(iv.begin(), iv.end());
+    printVector(iv);
 
     //printtaa ensimmäisen alkion iv vektorista
     //std::cout << iv.at(0);
@@ -214,9 +217,10 @@ int main() {
 //step 4: normi input else lauseeseen
 //step 6: print list (indekseillä) and networth of the stock
 //step 7: kysy mitä halutaan muuttaa (based on index) ja muutetaan
+//step 8: sort and print again
 
 //step 5: sort vektori (< operator tehty valmiiks, käytetään sitä)
-//step 8: sort and print again
+
 
 /*
  *Esimerkki siitä miten overloadatulla << operaattorilla voi esim tulostaa fileen asioita.
