@@ -102,7 +102,7 @@ std::istream &operator>>(std::istream &in, Item &i) {
                     //Tän pitäisi antaa automaattisesti failbit jos tulosta ei saada??
                     //Jos kaikki onnistuu, niin if lauseen sisällä referenssinä otettuun olioon asetetaan constructorilla saadut parametrit
                     if (ssolio1 >> weight_num && ssolio2 >> price_num && ssolio3 >> count_num) {
-                        //i(name_str, weight_num, price_num, count_num);  //Laitetaan kamaa referenssattuun olioon
+                        i(name_str, weight_num, price_num, count_num);  //Laitetaan kamaa referenssattuun olioon
                         ok = true;
                     }
                 }
@@ -128,6 +128,7 @@ int main() {
 
     //main koodia. Syöte funktio:
     while (keepGoing == true) {
+        Item newItem;
         std::cout << "enter item information, starting with the name or \"stop\" to end entering items or “json” to enter item information in JSON format" << std::endl;
         std::string line;
         std::getline(std::cin, line);
@@ -135,11 +136,16 @@ int main() {
             keepGoing = false;
         }
         else if (line == "json") {
-
+            std::cin >> newItem;
+        }
+        else {
+            //Tähän laitetaan suoraan nimellä alotettav syöte uuden olion parametrien antamiseksi
         }
 
 
     }
+
+//for testing
 for (auto &i:iv) {
     std::cout << i;
     std::cout << std::endl;
