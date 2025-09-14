@@ -73,7 +73,7 @@ std::ostream &operator<<(std::ostream &out, const Item &i) {
 
 std::istream &operator>>(std::istream &in, Item &i) {
     //tämä funktio ottaa vain json muotoista vastaa, loput syötteeet otetaan mainissa. Jos ei ole json muotoista, palauttaa failbitin
-    std::string name = "{\"Name\":\"",
+    std::string name = " {\"Name\":\"",
     weight = "\", \"Weight\":",
     price = ", \"Price\":",
     count = ", \"Count\":";
@@ -102,7 +102,7 @@ std::istream &operator>>(std::istream &in, Item &i) {
                     //Tän pitäisi antaa automaattisesti failbit jos tulosta ei saada??
                     //Jos kaikki onnistuu, niin if lauseen sisällä referenssinä otettuun olioon asetetaan constructorilla saadut parametrit
                     if (ssolio1 >> weight_num && ssolio2 >> price_num && ssolio3 >> count_num) {
-                        i(name_str, weight_num, price_num, count_num);  //Laitetaan kamaa referenssattuun olioon
+                        i = Item(name_str, weight_num, price_num, count_num);  //Laitetaan kamaa referenssattuun olioon
                         ok = true;
                     }
                 }
@@ -129,17 +129,27 @@ int main() {
     //main koodia. Syöte funktio:
     while (keepGoing == true) {
         Item newItem;
-        std::cout << "enter item information, starting with the name or \"stop\" to end entering items or “json” to enter item information in JSON format" << std::endl;
+        std::cout << R"(Enter item information, starting with the name or "stop" to end entering items or "json" to enter item information in JSON format)" << std::endl;
         std::string line;
         std::getline(std::cin, line);
         if (line == "stop") {
             keepGoing = false;
         }
         else if (line == "json") {
+            //testidataa:
+            //   { "Name":"Chicken vindalo", "Weight":460, "Price":7.90, "Count": 2 }
+            //   { "Name":"Ketsuppi", "Weight":200, "Price":3.20, "Count": 3 }
+            std::cout << "Enter the JSON" << std::endl;
             std::cin >> newItem;
+            iv.emplace_back(newItem);
         }
         else {
             //Tähän laitetaan suoraan nimellä alotettav syöte uuden olion parametrien antamiseksi
+            std::string name_str;
+            int weight_num;
+            double price_num;
+            int count_num;
+
         }
 
 
@@ -153,7 +163,7 @@ for (auto &i:iv) {
 
 
     //printtaa ensimmäisen alkion iv vektorista
-    std::cout << iv.at(0);
+    //std::cout << iv.at(0);
     //std::cout << "Kissa konsolissa";
 // step 1: output operaattori
 // step 2: vertailu (<-operaattori)
