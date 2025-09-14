@@ -167,7 +167,7 @@ int main() {
             }
             else {
                 iv.emplace_back(newItem);
-                std::cout << "Else if lause cin suoritettu" << std::endl;   //Tarkistus output
+                //std::cout << "Else if lause cin suoritettu" << std::endl;   //Tarkistus output
             }
         }
         else {
@@ -185,30 +185,38 @@ int main() {
             std::cin >> count_num;
             iv.emplace_back(line, weight_num, price_num, count_num);
         }
-
-
     }
 
+    //stopin jälkeen päädytään tänne, ja printataan vektori indekseineen, ja lopuksi "varaston" nettoarvo
     printVector(iv);
 
+    //seuraavaksi kysytään käyttäjältä mitä haluaa muuttaa, ja tehdään hintaan muutos.
+    auto index = 0;
+    double new_price;
+    std::cout << "Enter an index of the item you wish to change price for: " << std::endl;
+    std::cin >> index;  //tässäkään ei ole virheen käsittelyä, pitää syöttää oikeasti numeroita
+    std::cout << "Enter the new price: " << std::endl;
+    std::cin >> new_price;
+    iv[index].setPrice(new_price);
+
+    printVector(iv);
 
 
     //printtaa ensimmäisen alkion iv vektorista
     //std::cout << iv.at(0);
     //std::cout << "Kissa konsolissa";
+
+    return 0;
+}
 // step 1: output operaattori
 // step 2: vertailu (<-operaattori)
 // step 3: input operaattori
 //step 4: normi input else lauseeseen
 //step 6: print list (indekseillä) and networth of the stock
-
-    //step 5: sort vektori (< operator tehty valmiiks, käytetään sitä)
 //step 7: kysy mitä halutaan muuttaa (based on index) ja muutetaan
+
+//step 5: sort vektori (< operator tehty valmiiks, käytetään sitä)
 //step 8: sort and print again
-
-    return 0;
-}
-
 
 /*
  *Esimerkki siitä miten overloadatulla << operaattorilla voi esim tulostaa fileen asioita.
