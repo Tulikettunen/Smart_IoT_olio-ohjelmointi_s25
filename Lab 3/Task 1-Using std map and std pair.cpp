@@ -99,6 +99,7 @@ void PrintMap(const std::map<std::string, int> &map) {
 
 void PutToMap(std::map<std::string, int> &map, std::string key) {
     int num = TakeIntInput();
+    //map[key]=num;
     std::pair<std::string, int> p = {key, num};
     map.insert(p);
 }
