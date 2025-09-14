@@ -100,9 +100,9 @@ std::istream &operator>>(std::istream &in, Item &i) {
                     int count_num;
 
                     //Tän pitäisi antaa automaattisesti failbit jos tulosta ei saada??
-                    //Jos kaikki onnistuu, niin if lauseen sisällä luodaan olio parametreilla
+                    //Jos kaikki onnistuu, niin if lauseen sisällä referenssinä otettuun olioon asetetaan constructorilla saadut parametrit
                     if (ssolio1 >> weight_num && ssolio2 >> price_num && ssolio3 >> count_num) {
-                        Item //Luo olio tässä kohtaa??
+                        //i(name_str, weight_num, price_num, count_num);  //Laitetaan kamaa referenssattuun olioon
                         ok = true;
                     }
                 }
@@ -120,14 +120,27 @@ std::istream &operator>>(std::istream &in, Item &i) {
 int main() {
     //määrittele täälä vektori rakenne
     std::vector<Item> iv;
+    bool keepGoing = true;
 
     //pistä vektoriin sample kamaa
     iv.emplace_back("kana",350,5.5, 10);
     iv.emplace_back("banaani",150,0.5, 20);
+
+    //main koodia. Syöte funktio:
+    while (keepGoing == true) {
+        std::cout << "enter item information, starting with the name or \"stop\" to end entering items or “json” to enter item information in JSON format" << std::endl;
+        if () {
+
+        }
+
+
+    }
 for (auto &i:iv) {
     std::cout << i;
     std::cout << std::endl;
 }
+
+
     //printtaa ensimmäisen alkion iv vektorista
     std::cout << iv.at(0);
     //std::cout << "Kissa konsolissa";
