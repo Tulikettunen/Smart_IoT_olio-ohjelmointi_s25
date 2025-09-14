@@ -80,6 +80,7 @@ std::istream &operator>>(std::istream &in, Items &i) {
     bool ok = false;
     std::string line;
     std::getline(in, line, '}');    //ota getlinella } asti, käytä sitä erottimena.
+
     if ( line.find(name) != std::string::npos) {
         auto name_i = line.find(name);
         if (line.find(weight, name_i) != std::string::npos) {
@@ -97,9 +98,11 @@ std::istream &operator>>(std::istream &in, Items &i) {
                     int weight_num;
                     double price_num;
                     int count_num;
-                    if (ssolio1 >> && )
 
-                    ok = true;
+                    if (ssolio1 >> weight_num && ssolio2 >> price_num && ssolio3 >> count_num) {
+
+                        ok = true;
+                    }
                 }
             }
         }
