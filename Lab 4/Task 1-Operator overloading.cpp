@@ -17,7 +17,7 @@
 //INITIALIZE
 
 //CLASSES
-class Items {
+class Item {
 private:
     std::string name;
     int weight;
@@ -25,19 +25,19 @@ private:
     int storage_amount;
 
 public:
-    Items() {
+    Item() {
         name = "Item unknown";
         weight = 100;
         price = 10;
         storage_amount = 1;
     }
-    Items(std::string n, int w, double p, int s){
+    Item(std::string n, int w, double p, int s){
         name = n;
         weight = w;
         price = p;
         storage_amount = s;
     }
-    bool operator<(const Items &val) const {
+    bool operator<(const Item &val) const {
         //compare based on weight per price number
         double const self_kilos = weight / 1000.0;
         double const val_kilos = val.weight / 1000.0;
@@ -60,18 +60,18 @@ public:
         price = p;
     }
 
-    friend std::ostream &operator<<(std::ostream &out, const Items &i); //output overloaded operator
-    friend std::istream &operator>>(std::istream &in, Items &i);      //input overload operator
+    friend std::ostream &operator<<(std::ostream &out, const Item &i); //output overloaded operator
+    friend std::istream &operator>>(std::istream &in, Item &i);      //input overload operator
 };
 
 //FUNCTIONS
-std::ostream &operator<<(std::ostream &out, const Items &i) {
+std::ostream &operator<<(std::ostream &out, const Item &i) {
     //{ "Name":"Diced chicken", "Weight":350, "Price":5.30, "Count": 1 }
     out << "{\"Name\":" << i.name << ", \"Weight\":" << i.weight << ", \"Price\":" << i.price << ", \"Count\":" << i.storage_amount << "}";
     return out;
 }
 
-std::istream &operator>>(std::istream &in, Items &i) {
+std::istream &operator>>(std::istream &in, Item &i) {
     //tämä funktio ottaa vain json muotoista vastaa, loput syötteeet otetaan mainissa. Jos ei ole json muotoista, palauttaa failbitin
     std::string name = "{\"Name\":\"",
     weight = "\", \"Weight\":",
@@ -99,15 +99,19 @@ std::istream &operator>>(std::istream &in, Items &i) {
                     double price_num;
                     int count_num;
 
+                    //Tän pitäisi antaa automaattisesti failbit jos tulosta ei saada??
+                    //Jos kaikki onnistuu, niin if lauseen sisällä luodaan olio parametreilla
                     if (ssolio1 >> weight_num && ssolio2 >> price_num && ssolio3 >> count_num) {
-
+                        Item //Luo olio tässä kohtaa??
                         ok = true;
                     }
                 }
             }
         }
     }
-    if (!ok) //pistä failbit päälle
+    if (!ok) {  //pistä failbit päälle
+        in.setstate(std::ios::failbit);
+    }
     //Saat rivin syötteeseen, ja siitä kaivetaan sitten oikoeat tiedot ja tarkistetaan että muoto oikein.
     return in;
 }
@@ -115,13 +119,13 @@ std::istream &operator>>(std::istream &in, Items &i) {
 //MAIN
 int main() {
     //määrittele täälä vektori rakenne
-    std::vector<Items> iv;
+    std::vector<Item> iv;
 
     //pistä vektoriin sample kamaa
     iv.emplace_back("kana",350,5.5, 10);
     iv.emplace_back("banaani",150,0.5, 20);
-for (auto &item:iv) {
-    std::cout << item;
+for (auto &i:iv) {
+    std::cout << i;
     std::cout << std::endl;
 }
     //printtaa ensimmäisen alkion iv vektorista
