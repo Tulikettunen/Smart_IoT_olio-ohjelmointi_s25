@@ -64,23 +64,26 @@ public:
     friend std::istream &operator>>(std::istream &in, Item &i);      //input overload operator
 };
 
-//FUNCTIONS
+
+//FUNCTIONS:
+
+//Output stream overload operator
 std::ostream &operator<<(std::ostream &out, const Item &i) {
     //{ "Name":"Diced chicken", "Weight":350, "Price":5.30, "Count": 1 }
     out << "{\"Name\":" << i.name << ", \"Weight\":" << i.weight << ", \"Price\":" << i.price << ", \"Count\":" << i.storage_amount << "}";
     return out;
 }
 
+//Input stream overload operator
 std::istream &operator>>(std::istream &in, Item &i) {
     //tämä funktio ottaa vain json muotoista vastaa, loput syötteeet otetaan mainissa. Jos ei ole json muotoista, palauttaa failbitin
-    std::string name = "{ \"Name\":\"",
-    weight = "\", \"Weight\":",
+    std::string name = R"({ "Name":")",
+    weight = R"(", "Weight":)",
     price = ", \"Price\":",
     count = ", \"Count\":";
     bool ok = false;
     std::string line;
     std::getline(in, line, '}');    //ota getlinella } asti, käytä sitä erottimena.
-
     if ( line.find(name) != std::string::npos) {
         auto name_i = line.find(name);
         if (line.find(weight, name_i) != std::string::npos) {
@@ -116,6 +119,19 @@ std::istream &operator>>(std::istream &in, Item &i) {
     return in;
 }
 
+void printVector(std::vector<Item> &v) {
+    int count = 0;      //index
+    double networth = 0;
+    for (auto &i:v) {
+        std::cout << "[" << count << "]";
+        std::cout << i;
+        std::cout << std::endl;
+        networth = networth + i.getPrice();
+        ++count;
+    }
+    std::cout << "Networth of your stock is: " << networth << std::endl;
+}
+
 //MAIN
 int main() {
     //määrittele täälä vektori rakenne
@@ -131,10 +147,10 @@ int main() {
         Item newItem;
         std::cout << R"(Enter item information, starting with the name or "stop" to end entering items or "json" to enter item information in JSON format)" << std::endl;
         std::string line;
-        std::cout << "Is string good" << std::cin.good() << std::endl;
+        //std::cout << "Is string good" << std::cin.good() << std::endl;      //Tarkistus output
         std::cin >> std::ws;
         std::getline(std::cin, line);
-        std::cout << line << std::endl;
+        //std::cout << line << std::endl;            //Tarkistus output
         if (line == "stop") {
             keepGoing = false;
         }
@@ -151,27 +167,30 @@ int main() {
             }
             else {
                 iv.emplace_back(newItem);
-                std::cout << "Else if lause cin suoritettu" << std::endl;
+                std::cout << "Else if lause cin suoritettu" << std::endl;   //Tarkistus output
             }
         }
         else {
-            //Tähän laitetaan suoraan nimellä alotettav syöte uuden olion parametrien antamiseksi
-            std::string name_str;
-            std::cout << "Vika else lause" << std::endl;
+            //Tähän laitetaan suoraan nimellä alotettava syöte uuden olion parametrien antamiseksi
+            //std::cout << "Vika else lause" << std::endl;    //Tarkistus output
             int weight_num;
             double price_num;
             int count_num;
-
+            //Tässä kohtaa ei voi laittaa virhesyötettä
+            std::cout << "Enter weight: " << std::endl;
+            std::cin >> weight_num;
+            std::cout << "Enter price: " << std::endl;
+            std::cin >> price_num;
+            std::cout << "Enter how much in stock: " << std::endl;
+            std::cin >> count_num;
+            iv.emplace_back(line, weight_num, price_num, count_num);
         }
 
 
     }
 
-//for testing
-for (auto &i:iv) {
-    std::cout << i;
-    std::cout << std::endl;
-}
+    printVector(iv);
+
 
 
     //printtaa ensimmäisen alkion iv vektorista
@@ -180,7 +199,12 @@ for (auto &i:iv) {
 // step 1: output operaattori
 // step 2: vertailu (<-operaattori)
 // step 3: input operaattori
+//step 4: normi input else lauseeseen
+//step 6: print list (indekseillä) and networth of the stock
 
+    //step 5: sort vektori (< operator tehty valmiiks, käytetään sitä)
+//step 7: kysy mitä halutaan muuttaa (based on index) ja muutetaan
+//step 8: sort and print again
 
     return 0;
 }
