@@ -91,6 +91,12 @@ build CMakeFiles/untitled.dir/Lab_4/Task_1-Operator_overloading.cpp.obj: CXX_COM
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir\Lab_4
 
+build CMakeFiles/untitled.dir/Lab_4/Testi_ja_esimerkki_koodipätkiä.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/tuuli/CLionProjects/untitled/Lab$ 4/Testi$ ja$ esimerkki$ koodipätkiä.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\Lab_4\Testi_ja_esimerkki_koodipätkiä.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir\Lab_4
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -99,7 +105,7 @@ build CMakeFiles/untitled.dir/Lab_4/Task_1-Operator_overloading.cpp.obj: CXX_COM
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/Lab_1/Task_1-simple_c++_program.cpp.obj CMakeFiles/untitled.dir/Lab_2/Task_1-String_streams.cpp.obj CMakeFiles/untitled.dir/Lab_2/Task_2-File_system.cpp.obj CMakeFiles/untitled.dir/Lab_1/Task_2-using_reference_parameter.cpp.obj CMakeFiles/untitled.dir/Lab_3/Task_1-Using_std_map_and_std_pair.cpp.obj CMakeFiles/untitled.dir/Lab_3/Task_2-_Composition.cpp.obj CMakeFiles/untitled.dir/Lab_4/Task_1-Operator_overloading.cpp.obj
+build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/Lab_1/Task_1-simple_c++_program.cpp.obj CMakeFiles/untitled.dir/Lab_2/Task_1-String_streams.cpp.obj CMakeFiles/untitled.dir/Lab_2/Task_2-File_system.cpp.obj CMakeFiles/untitled.dir/Lab_1/Task_2-using_reference_parameter.cpp.obj CMakeFiles/untitled.dir/Lab_3/Task_1-Using_std_map_and_std_pair.cpp.obj CMakeFiles/untitled.dir/Lab_3/Task_2-_Composition.cpp.obj CMakeFiles/untitled.dir/Lab_4/Task_1-Operator_overloading.cpp.obj CMakeFiles/untitled.dir/Lab_4/Testi_ja_esimerkki_koodipätkiä.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir

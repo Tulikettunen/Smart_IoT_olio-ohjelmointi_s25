@@ -12,4 +12,5 @@ add_executable(untitled
         "Lab 3/Task 1-Using std map and std pair.cpp"
         "Lab 3/Task 2- Composition.cpp"
         "Lab 4/Task 1-Operator overloading.cpp"
+        "Lab 4/Testi ja esimerkki koodipätkiä.cpp"
 )
