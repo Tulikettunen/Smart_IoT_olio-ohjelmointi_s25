@@ -88,7 +88,7 @@ std::istream &operator>>(std::istream &in, Item &i) {
     bool ok = false;
     std::string line;
     std::getline(in, line, '}');    //ota getlinella } asti, käytä sitä erottimena.
-    if ( line.find(name) != std::string::npos) {
+    if (line.find(name) != std::string::npos) {
         auto name_i = line.find(name);
         if (line.find(weight, name_i) != std::string::npos) {
             auto weight_i = line.find(weight);
