@@ -17,6 +17,8 @@ public:
     virtual ~Counter() {};
 };
 */
+// Mikä " virtual operator int() = 0; " tarkoittaa? Se tarkoittaa, että luokalla on puhdas virtuaalinen tyyppimuunnosoperaattori, joka mahdollistaa olion muuntamisen kokonaisluvuksi (int-tyypiksi). Tämä tarkoittaa, että aliluokkien on toteutettava tämä operaattori, jotta ne voivat määritellä, miten olio muunnetaan kokonaisluvuksi. Tämä on hyödyllistä, kun halutaan käyttää Counter-olioita kokonaislukuarvoina esimerkiksi laskutoimituksissa tai tulostuksessa.
+//Jokku print operaattori tarvitaan vielä et saadaan luku ulos. VAi lisäisko sen suoraan inc() ja dec() funktioihin?
 
 // you need to implement this function
 //void UseCounter(Counter& ctr, int num);
