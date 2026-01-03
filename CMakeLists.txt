@@ -15,8 +15,13 @@ add_executable(untitled
         "Lab 4/Testi ja esimerkki koodipätkiä.cpp"
         testing/TEstailua.cpp
         "Lab 6/Lab 6-Smart pointers.cpp"
+        "Lab 7/Lab 7-Inheritance.cpp"
+        "Lab 8/Lab8-Abstract_class.cpp"
+        "Lab 8/Lab8_main.cpp"
+        "Lab 8/Lab8-Abstract_class.h"
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
+    Own_headers
  #"C:\\Users\\tuuli\\CLionProjects\\Own_headers"
         "C:/Users/tuuli/CLionProjects/Own_headers"
 )
