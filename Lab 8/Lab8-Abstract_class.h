@@ -12,6 +12,9 @@ public:
     virtual ~Counter() = default;
     virtual void inc() = 0;
     virtual void dec() = 0;
+
+    friend std::ostream& operator<<(std::ostream& out, const Counter& ctr);
+
 protected:
     int count;
     const int upLimit;

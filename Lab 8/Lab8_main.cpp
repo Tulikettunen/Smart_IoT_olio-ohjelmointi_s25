@@ -21,7 +21,7 @@ public:
 //Jokku print operaattori tarvitaan vielä et saadaan luku ulos. VAi lisäisko sen suoraan inc() ja dec() funktioihin?
 
 // you need to implement this function
-//void UseCounter(Counter& ctr, int num);
+//void UseCounter(Counter& ctr, int num); Done
 
 
 int main(int argc, char** argv) {

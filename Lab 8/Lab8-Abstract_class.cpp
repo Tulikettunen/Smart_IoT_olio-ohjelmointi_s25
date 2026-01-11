@@ -13,6 +13,11 @@
 //COUNTER CLASS
 Counter::Counter(int initial, int limit): count(initial), upLimit(limit) {}
 
+std::ostream& operator<<(std::ostream& out, const Counter& ctr){    //friend function for overloading output operator
+    out << ctr.count;
+    return out;
+}
+
 
 //LIMITED COUNTER CLASS
 LimitedCounter::LimitedCounter(int initial, int limit) :Counter(initial, limit) {}
@@ -42,5 +47,19 @@ void OverflowCounter::dec() {
     count--;
     if(count < 0){
         count = upLimit;
+    }
+}
+
+//OTHER FUNCTIONS
+void UseCounter(Counter& ctr, int num)
+{
+    if (num > 0) {
+        for (int i = 0; i < num; ++i) {
+            ctr.inc();
+        }
+    } else if (num < 0) {
+        for (int i = num; i < 0; ++i) {
+            ctr.dec();
+        }
     }
 }
